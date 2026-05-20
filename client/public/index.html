@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  />
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  />
+
+  <meta
+    name="description"
+    content="CipherNet Sentinel - AI Based Network Traffic Analyzer"
+  />
+
+  <title>
+    CipherNet Sentinel
+  </title>
+
+  <!-- HACKER FONTS -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- FONT AWESOME -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <style>
+
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+
+    }
+
+    body {
+
+      background:
+        #000000;
+
+      overflow-x: hidden;
+
+      font-family:
+        'Share Tech Mono',
+        monospace;
+
+      color: #22c55e;
+
+      position: relative;
+
+    }
+
+    /* CYBER GRID */
+
+    body::before {
+
+      content: "";
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      background-image:
+
+        linear-gradient(
+          rgba(0,255,0,0.05) 1px,
+          transparent 1px
+        ),
+
+        linear-gradient(
+          90deg,
+          rgba(0,255,0,0.05) 1px,
+          transparent 1px
+        );
+
+      background-size:
+        40px 40px;
+
+      z-index: -2;
+
+    }
+
+    /* MATRIX EFFECT */
+
+    .matrix {
+
+      position: fixed;
+
+      width: 100%;
+
+      height: 100%;
+
+      overflow: hidden;
+
+      top: 0;
+
+      left: 0;
+
+      z-index: -1;
+
+      pointer-events: none;
+
+    }
+
+    .matrix span {
+
+      position: absolute;
+
+      top: -100px;
+
+      color: #22c55e;
+
+      font-size: 20px;
+
+      opacity: 0.4;
+
+      animation:
+        fall linear infinite;
+
+      text-shadow:
+        0 0 10px #22c55e;
+
+    }
+
+    @keyframes fall {
+
+      0% {
+
+        transform:
+          translateY(-100px);
+
+      }
+
+      100% {
+
+        transform:
+          translateY(120vh);
+
+      }
+
+    }
+
+    #root {
+
+      position: relative;
+
+      z-index: 1;
+
+      padding-bottom: 100px;
+
+    }
+
+    /* FOOTER */
+
+    .footer {
+
+      position: fixed;
+
+      bottom: 0;
+
+      left: 0;
+
+      width: 100%;
+
+      background:
+        rgba(0,0,0,0.95);
+
+      border-top:
+        2px solid #22c55e;
+
+      display: flex;
+
+      justify-content: space-around;
+
+      align-items: center;
+
+      flex-wrap: wrap;
+
+      padding: 18px;
+
+      z-index: 999;
+
+      box-shadow:
+        0 0 20px rgba(34,197,94,0.4);
+
+    }
+
+    .footer a {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      text-decoration: none;
+
+      border-bottom: none;
+
+      outline: none;
+
+      font-size: 18px;
+
+      transition: 0.3s ease;
+
+    }
+
+    .footer a:hover {
+
+      transform:
+        scale(1.08);
+
+    }
+
+    /* INSTAGRAM */
+
+    .instagram {
+
+      color: #E1306C;
+
+      text-shadow:
+        0 0 10px #E1306C;
+
+    }
+
+    /* GITHUB */
+
+    .github {
+
+      color: #ffffff;
+
+      text-shadow:
+        0 0 10px #ffffff;
+
+    }
+
+    /* EMAIL */
+
+    .email {
+
+      color: #22c55e;
+
+      text-shadow:
+        0 0 10px #22c55e;
+
+    }
+
+    .footer i {
+
+      font-size: 30px;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- MATRIX BACKGROUND -->
+
+  <div class="matrix">
+
+    <span
+      style="
+      left:5%;
+      animation-duration:8s;">
+      010101
+    </span>
+
+    <span
+      style="
+      left:15%;
+      animation-duration:12s;">
+      101010
+    </span>
+
+    <span
+      style="
+      left:25%;
+      animation-duration:9s;">
+      110011
+    </span>
+
+    <span
+      style="
+      left:35%;
+      animation-duration:14s;">
+      001101
+    </span>
+
+    <span
+      style="
+      left:45%;
+      animation-duration:10s;">
+      111000
+    </span>
+
+    <span
+      style="
+      left:55%;
+      animation-duration:13s;">
+      010101
+    </span>
+
+    <span
+      style="
+      left:65%;
+      animation-duration:7s;">
+      101101
+    </span>
+
+    <span
+      style="
+      left:75%;
+      animation-duration:11s;">
+      110100
+    </span>
+
+    <span
+      style="
+      left:85%;
+      animation-duration:15s;">
+      001111
+    </span>
+
+    <span
+      style="
+      left:95%;
+      animation-duration:9s;">
+      111111
+    </span>
+
+  </div>
+
+  <!-- REACT APP -->
+
+  <div id="root"></div>
+
+  <!-- FOOTER -->
+
+  <div class="footer">
+
+    <!-- INSTAGRAM -->
+
+    <a
+      href="https://instagram.com/saikumar_uthkar"
+      target="_blank"
+      class="instagram"
+    >
+
+      <i class="fab fa-instagram"></i>
+
+      <span>
+        saikumar_uthkar
+      </span>
+
+    </a>
+
+    <!-- GITHUB -->
+
+    <a
+      href="https://github.com/UTHKARSAI"
+      target="_blank"
+      class="github"
+    >
+
+      <i class="fab fa-github"></i>
+
+      <span>
+        UTHKARSAI
+      </span>
+
+    </a>
+
+    <!-- EMAIL -->
+
+    <a
+      href="mailto:uthkarsai@gmail.com"
+      class="email"
+    >
+
+      <i class="fas fa-envelope"></i>
+
+      <span>
+        uthkarsai@gmail.com
+      </span>
+
+    </a>
+
+  </div>
+
+</body>
+
+</html>
