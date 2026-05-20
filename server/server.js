@@ -1,136 +1,62 @@
-const express = require("express");
+// server/server.js
 
-const cors = require("cors");
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
-const http = require("http");
-
-const axios = require("axios");
-
-const { Server } = require("socket.io");
+require('dotenv').config();
 
 const app = express();
 
 app.use(cors());
 
-const server = http.createServer(app);
+app.use(express.json());
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-  },
-});
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
-let activeIPs = new Set();
+app.get('/', (req, res) => {
 
-let suspiciousIPs = {};
-
-async function getIPInfo(ip) {
-
-  try {
-
-    const response =
-      await axios.get(
-
-        `http://ip-api.com/json/${ip}`
-
-      );
-
-    return {
-
-      country:
-        response.data.country,
-
-      city:
-        response.data.city,
-
-      isp:
-        response.data.isp,
-
-    };
-
-  } catch {
-
-    return {
-
-      country: "Unknown",
-
-      city: "Unknown",
-
-      isp: "Unknown",
-
-    };
-
-  }
-
-}
-
-app.get("/", (req, res) => {
-
-  res.send(
-    "CipherNet Sentinel Backend Running 🚀"
-  );
+  res.send('CipherNet-Sentinel Backend Running');
 
 });
 
-io.on("connection", (socket) => {
+app.get('/traffic', (req, res) => {
 
-  console.log("Client Connected");
+  const trafficData = [
 
-  socket.on(
-    "traffic-data",
+    {
+      ip: '192.168.1.5',
+      packets: 120,
+      protocol: 'TCP',
+      threat: 'Low'
+    },
 
-    async (data) => {
+    {
+      ip: '10.0.0.2',
+      packets: 560,
+      protocol: 'UDP',
+      threat: 'High'
+    },
 
-      activeIPs.add(data.source);
-
-      if (data.suspicious) {
-
-        suspiciousIPs[data.source] =
-          (
-            suspiciousIPs[data.source] || 0
-          ) + 1;
-
-      }
-
-      const geoInfo =
-        await getIPInfo(
-          data.destination
-        );
-
-      const dashboardData = {
-
-        packet: {
-
-          ...data,
-
-          geoInfo,
-
-        },
-
-        activeDevices:
-          activeIPs.size,
-
-        suspiciousIPs,
-
-      };
-
-      io.emit(
-        "live-traffic",
-        dashboardData
-      );
-
+    {
+      ip: '172.16.0.7',
+      packets: 300,
+      protocol: 'ICMP',
+      threat: 'Medium'
     }
 
-  );
+  ];
+
+  res.json(trafficData);
 
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
 
-  console.log(
-    `Server running on port ${PORT}`
-  );
+  console.log(`Server running on port ${PORT}`);
 
 });
